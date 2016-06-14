@@ -1,0 +1,46 @@
+body {
+  padding-top: 100px;
+}
+
+.bg-overflow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 10;
+}
+
+.modal-window {
+  overflow: hidden;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 440px;
+  margin-left: -300px;
+  margin-top: -220px;
+  border: 1px solid #ccc;
+  background-color: white;
+  z-index: 100;
+}
+
+.music-list {
+
+}
+
+.music-item {
+  cursor: pointer;
+  padding: 4px 0;
+  margin-bottom: 5px;
+  &--select {
+    background-color: rgba(17, 17, 247, 0.15);
+  }
+}
+
+.pagination {
+  display: block;
+}

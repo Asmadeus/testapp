@@ -1,0 +1,32 @@
+.container
+  button.btn.btn-primary ng-click="showModal('first')" Выбрать
+  .select-musics
+    ul 
+      li ng-repeat='item in indexList' 
+        | {{item.artist}} - {{item.name}}
+      
+.modal-window--animate ng-show="modals['first']"
+  .bg-overflow
+  .modal-window
+    .text-center
+      h3 Список выбранных песен
+      button.btn.btn-primary ng-click="showModal('second')" Выбрать
+      button.btn.btn-primary ng-click="closeModal('first')" Закрыть
+    ul
+      li ng-repeat='item in selectList'
+        | {{item.artist}} - {{item.name}}
+    button.btn.btn-primary ng-click='submitSelected()' Подтвердить
+  
+.modal-window.modal-window--animate ng-show="modals['second']" 
+  .text-center
+    button.btn.btn-primary ng-click="closeModal('second')" ОК
+    button.btn.btn-primary ng-click="closeModal('second')" ЗАКРЫТЬ
+  div ng-controller='PaginationCtrl'
+    ul.music-list
+      li.music-item ng-class="{'music-item--select': item.select}" ng-repeat='item in list | startFrom: firsItemOnPage() | limitTo: itemsPerPage' ng-click='toggleSelectItem(item)'
+        | {{item.artist}} - {{item.name}}
+    .pagination.text-center
+      button.btn.btn-primary ng-disabled='firstPage()' ng-click='toPrevPage()' Назад
+      span 
+        | {{currentPage+1}} из {{numberOfPage()}}
+      button.btn.btn-primary ng-disabled='lastPage()' ng-click='toNextPage()' Вперед

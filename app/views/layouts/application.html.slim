@@ -1,5 +1,5 @@
 doctype html
-html
+html ng-app='TestApp'
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
     title Try
@@ -7,4 +7,5 @@ html
     = javascript_include_tag 'application'
     = csrf_meta_tags
   body
-    = yield
+    / = yield
+    ng-view
