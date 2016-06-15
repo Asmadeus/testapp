@@ -17,16 +17,11 @@
         | {{item.artist}} - {{item.name}}
     button.btn.btn-primary ng-click='submitSelected()' Подтвердить
   
-.modal-window.modal-window--animate ng-show="modals['second']" 
+.modal-window.modal-window--animate ng-show="modals['second']" infinite-scroll="loadNewItems()"
   .text-center
     button.btn.btn-primary ng-click="closeModal('second')" ОК
     button.btn.btn-primary ng-click="closeModal('second')" ЗАКРЫТЬ
-  div ng-controller='PaginationCtrl'
-    ul.music-list
-      li.music-item ng-class="{'music-item--select': item.select}" ng-repeat='item in list | startFrom: firsItemOnPage() | limitTo: itemsPerPage' ng-click='toggleSelectItem(item)'
+  div ng-init='loadNewItems()'
+    ol.music-list 
+      li.music-item ng-class="{'music-item--select': item.select}" ng-repeat='item in list' ng-click='toggleSelectItem(item)'
         | {{item.artist}} - {{item.name}}
-    .pagination.text-center
-      button.btn.btn-primary ng-disabled='firstPage()' ng-click='toPrevPage()' Назад
-      span 
-        | {{currentPage+1}} из {{numberOfPage()}}
-      button.btn.btn-primary ng-disabled='lastPage()' ng-click='toNextPage()' Вперед

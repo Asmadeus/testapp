@@ -9,7 +9,9 @@ angular.module('TestApp')
 
       $scope.selectList = []
       $scope.indexList = []
-      $scope.modalIsOpen = false;
+      $scope.modalIsOpen = false
+
+      # $scope.list = MusicService.getMusicList()
 
       $scope.showModal = (target) ->
         $scope.modals[target] = true
@@ -30,32 +32,12 @@ angular.module('TestApp')
         angular.copy($scope.selectList, $scope.indexList)
         $scope.closeModal('first')
 
+      $scope.page = 1
+      $scope.list = []
+
+      $scope.loadNewItems = ->
+        MusicService.getMusicList(page: $scope.page).then (response) ->
+          $scope.list = $scope.list.concat(response.data)
+          $scope.page++
+
   ])
-  .controller('PaginationCtrl',[
-    '$scope'
-    'MusicService'
-    ($scope, MusicService) ->
-      $scope.list = MusicService.getMusicList()
-
-      $scope.itemsPerPage = 10
-      $scope.currentPage = 0
-
-      $scope.numberOfPage = ->
-        Math.ceil($scope.list.length / $scope.itemsPerPage)
-
-      $scope.firstPage = ->
-        $scope.currentPage == 0
-
-      $scope.lastPage = ->
-        $scope.currentPage == $scope.numberOfPage() - 1
-
-      $scope.toNextPage = ->
-        $scope.currentPage++
-
-      $scope.toPrevPage = ->
-        $scope.currentPage--
-
-      $scope.firsItemOnPage = ->
-        $scope.currentPage * $scope.itemsPerPage
-
-    ])

@@ -8,6 +8,6 @@ class IndexController < ApplicationController
   end
 
   def index
-  
+
   end
 end
