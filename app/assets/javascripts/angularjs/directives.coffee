@@ -7,6 +7,6 @@ angular.module('TestApp').directive('infiniteScroll', [
         ->
           if raw.scrollTop + raw.offsetHeight >= raw.scrollHeight
             scope.$apply(attrs.infiniteScroll)
-        , 200 )
+        , 100 )
       )
 ])
